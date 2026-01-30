@@ -1,7 +1,8 @@
-package com.example.demo.repository;
+package com.example.demo.user.repository;
 
-import com.example.demo.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo.user.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     // CRUD methods are already provided

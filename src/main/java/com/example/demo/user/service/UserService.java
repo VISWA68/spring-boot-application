@@ -1,9 +1,9 @@
-package com.example.demo.service;
+package com.example.demo.user.service;
 
-import com.example.demo.dto.UserCreateRequest;
-import com.example.demo.dto.UserResponse;
-import com.example.demo.entity.User;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.user.dto.UserCreateRequest;
+import com.example.demo.user.dto.UserResponse;
+import com.example.demo.user.entity.User;
+import com.example.demo.user.repository.UserRepository;
 
 import java.util.List;
 
