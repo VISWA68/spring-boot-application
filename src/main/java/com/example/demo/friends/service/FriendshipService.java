@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.friends.dto.AddFriendRequest;
 import com.example.demo.friends.dto.AddFriendResponse;
@@ -26,10 +25,10 @@ public class FriendshipService {
         this.userRepository = userRepository;
     }
 
-    public List<FriendResponse> getAllFriendsOfUser(Long currentUserId) {
+    public List<FriendResponse> getAllFriendsByStatus(Long currentUserId, FriendshipStatus status) {
 
         List<Friends> friendships =
-                friendshipRepository.findAllByUserId(currentUserId);
+                friendshipRepository.findFriendsByStatus(currentUserId, status);
 
         return friendships.stream()
                 .map(friendship -> {

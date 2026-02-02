@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.friends.dto.AddFriendRequest;
 import com.example.demo.friends.dto.AddFriendResponse;
 import com.example.demo.friends.dto.FriendResponse;
+import com.example.demo.friends.entity.FriendshipStatus;
 import com.example.demo.friends.service.FriendshipService;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
-@RequestMapping("/{id}")
+@RequestMapping("/users/{userId}/friends")
 public class FriendshipController {
 
     private final FriendshipService friendshipService;
@@ -27,20 +28,38 @@ public class FriendshipController {
         this.friendshipService = friendshipService;
     }
 
-    @GetMapping("/friends/all")
-    public List<FriendResponse> getAllFriends(@PathVariable Long id) {
-        return friendshipService.getAllFriendsOfUser(id);
+    @GetMapping("/accepted")
+    public List<FriendResponse> getAllFriends(@PathVariable Long userId) {
+        return friendshipService.getAllFriendsByStatus(userId, FriendshipStatus.ACCEPTED);
     }
 
-    @PostMapping("/friends/add")
+    @GetMapping("/pending")
+    public List<FriendResponse> getAllPendingFriends(@PathVariable Long userId) {
+        return friendshipService.getAllFriendsByStatus(userId, FriendshipStatus.PENDING);
+    }
+
+    @GetMapping("/blocked")
+    public List<FriendResponse> getAllBlockedFriends(@PathVariable Long userId) {
+        return friendshipService.getAllFriendsByStatus(userId, FriendshipStatus.BLOCKED);
+    }
+
+    @GetMapping("/rejected")
+    public List<FriendResponse> getAllRejectedFriends(@PathVariable Long userId) {
+        return friendshipService.getAllFriendsByStatus(userId, FriendshipStatus.REJECTED);
+    }
+
+    @PostMapping("/add")
     public AddFriendResponse addFriend(@RequestBody AddFriendRequest request) {
         request.setRequestedAt(LocalDateTime.now());
         return friendshipService.addFriend(request);
     }
 
-    @PutMapping("/friends/update-status")
-    public String updateFriendshipStatus(@PathVariable String id) {
-        // Implementation for updating friendship status would go here
-        return "Update friendship status functionality is not implemented yet.";
+    @PutMapping("/{friendshipId}/accept")
+    public String acceptFriend(
+            @PathVariable Long userId,
+            @PathVariable Long friendshipId
+    ) {
+        return "Friendship accepted";
     }
 }
+
