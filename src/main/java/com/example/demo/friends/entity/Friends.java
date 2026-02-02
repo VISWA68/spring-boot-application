@@ -39,7 +39,7 @@ public class Friends {
     private User friend;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private FriendshipStatus status;
 
     @Column(nullable = false)
@@ -73,7 +73,7 @@ public class Friends {
     public void setStatus(FriendshipStatus status) {
         this.status = status;
     }
-    
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }

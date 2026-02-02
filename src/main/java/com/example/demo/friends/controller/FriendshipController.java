@@ -59,7 +59,27 @@ public class FriendshipController {
             @PathVariable Long userId,
             @PathVariable Long friendshipId
     ) {
+        friendshipService.updateFriendshipStatus(friendshipId, FriendshipStatus.ACCEPTED);
         return "Friendship accepted";
     }
+
+    @PutMapping("/{friendshipId}/reject")
+    public String rejectFriend(
+            @PathVariable Long userId,
+            @PathVariable Long friendshipId
+    ) {
+        friendshipService.updateFriendshipStatus(friendshipId, FriendshipStatus.REJECTED);
+        return "Friendship rejected";
+    }
+
+    @PutMapping("/{friendshipId}/block")
+    public String blockFriend(
+            @PathVariable Long userId,
+            @PathVariable Long friendshipId
+    ) {
+        friendshipService.updateFriendshipStatus(friendshipId, FriendshipStatus.BLOCKED);
+        return "Friendship blocked";
+    }
+    
 }
 

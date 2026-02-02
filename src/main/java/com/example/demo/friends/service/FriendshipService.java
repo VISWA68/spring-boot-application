@@ -69,5 +69,18 @@ public class FriendshipService {
                 saved.getStatus(),
                 LocalDate.now()
         );
+
+    }
+
+    public void updateFriendshipStatus(
+            Long friendshipId,
+            FriendshipStatus newStatus
+    ) {
+        Friends friendship = friendshipRepository.findById(friendshipId)
+                .orElseThrow(() -> new RuntimeException("Friendship not found"));
+
+        friendship.setStatus(newStatus);
+
+        friendshipRepository.save(friendship);
     }
 }
