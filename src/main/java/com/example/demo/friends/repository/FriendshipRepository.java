@@ -15,4 +15,5 @@ public interface FriendshipRepository extends JpaRepository<Friends, Long> {
        OR f.friend.id = :userId
     """)
     List<Friends> findAllByUserId(@Param("userId") Long userId);
+
 }

@@ -57,10 +57,23 @@ public class Friends {
         return status;
     }
 
+    public User setUser(User user) {
+        this.user = user;
+        return user;
+    }
+    
     public User getUser() {
         return user;
     }
 
+    public User setFriend(User friend) {
+        this.friend = friend;
+        return friend;
+    }
+    public void setStatus(FriendshipStatus status) {
+        this.status = status;
+    }
+    
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
