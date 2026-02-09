@@ -5,7 +5,7 @@ pipeline {
         stage('Deploy to EC2') {
             steps {
                 sh '''
-                ssh ubuntu@EC2_IP << 'EOF'
+                ssh ubuntu@18.60.233.196 << 'EOF'
                 cd springboot-app
                 git pull origin main
                 docker-compose down
