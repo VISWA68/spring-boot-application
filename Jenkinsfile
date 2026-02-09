@@ -6,7 +6,7 @@ pipeline {
             steps {
                 sh '''
                 ssh ubuntu@18.60.233.196 << 'EOF'
-                cd springboot-app
+                cd spring-boot-application
                 git pull origin main
                 docker-compose down
                 docker-compose up --build -d
