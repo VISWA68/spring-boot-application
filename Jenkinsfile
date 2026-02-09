@@ -8,6 +8,8 @@ pipeline {
                 ssh ubuntu@18.60.233.196 << 'EOF'
                 cd spring-boot-application
                 git pull origin main
+                chmod +x gradlew
+                ./gradlew clean build
                 docker-compose down
                 docker-compose up --build -d
                 EOF
